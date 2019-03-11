@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:async';
 
 void main() => runApp(MaterialApp(home: MyApp()));
 
@@ -8,12 +9,15 @@ class MyApp extends StatefulWidget {
 }
 
 class _State extends State<MyApp> {
-  String _value = 'Hello World';
+  String _value = '';
 
-  void _onPressed(String value) {
-    setState(() {
-      _value = value;
-    });
+  Future _selectDate() async {
+    DateTime picked = await showDatePicker(
+        context: context,
+        initialDate: new DateTime.now(),
+        firstDate: new DateTime(2016),
+        lastDate: new DateTime(2020));
+    if (picked != null) setState(() => _value = picked.toString());
   }
 
   @override
@@ -29,8 +33,8 @@ class _State extends State<MyApp> {
             children: <Widget>[
               new Text(_value),
               new RaisedButton(
-                onPressed: () => _onPressed('Hello Geordan'),
-                child: new Text('Click me'),
+                onPressed: _selectDate,
+                child: new Text('Click Me'),
               )
             ],
           ),
