@@ -1,6 +1,4 @@
-# Flutter Course
-
-[![CircleCI](https://circleci.com/gh/geordanex/Flutter-Course/tree/master.svg?style=svg)](https://circleci.com/gh/geordanex/Flutter-Course/tree/master)
+# Flutter Course [![CircleCI Build Status](https://circleci.com/gh/geordanex/Flutter-Course/tree/master.svg?style=shield)](https://circleci.com/gh/geordanex/Flutter-Course/tree/master)
 
 ## Spanish - Español
 En este proyecto estará la mayoria de los widgets de Flutter que están documentados.
