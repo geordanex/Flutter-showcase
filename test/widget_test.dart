@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:demo/sample.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -18,30 +18,4 @@ void main() {
     expect(titleFinder, findsOneWidget);
     expect(messageFinder, findsOneWidget);
   });
-}
-
-class MyWidget extends StatelessWidget {
-  final String title;
-  final String message;
-
-  const MyWidget({
-    Key key,
-    @required this.title,
-    @required this.message,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text(title),
-        ),
-        body: Center(
-          child: Text(message),
-        ),
-      ),
-    );
-  }
 }
