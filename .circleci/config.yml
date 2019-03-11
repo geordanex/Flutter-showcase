@@ -10,4 +10,4 @@ jobs:
       - run: flutter doctor
       - run: flutter test
       - codecov/upload:
-          file: {{ codecov.yml }}
+          file: "codecov.yml"
