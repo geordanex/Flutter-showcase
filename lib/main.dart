@@ -8,12 +8,17 @@ class MyApp extends StatefulWidget {
 }
 
 class _State extends State<MyApp> {
+  int _value = 0;
 
-  String _value = 'Hola Mundo';
-
-  void _onPressed() {
+  void _add() {
     setState(() {
-      _value = new DateTime.now().toString();
+      _value++;
+    });
+  }
+
+  void _subtract() {
+    setState(() {
+      _value--;
     });
   }
 
@@ -28,9 +33,15 @@ class _State extends State<MyApp> {
         child: new Center(
           child: new Column(
             children: <Widget>[
-              new Text(_value),
-              new RaisedButton(onPressed: _onPressed, child: new Text('Click me')),
-              new FlatButton(onPressed: _onPressed, child: new Text('Click me'))
+              new Text('Value = ${_value}'),
+              new IconButton(
+                icon: new Icon(Icons.add),
+                onPressed: _add,
+              ),
+              new IconButton(
+                icon: new Icon(Icons.remove),
+                onPressed: _subtract,
+              )
             ],
           ),
         ),
