@@ -9,3 +9,5 @@ jobs:
       - checkout
       - run: flutter doctor
       - run: flutter test
+      - codecov/upload:
+          file: {{ codecov.yml }}
