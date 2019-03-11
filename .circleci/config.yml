@@ -9,5 +9,6 @@ jobs:
       - checkout
       - run: flutter doctor
       - run: flutter test
-      - codecov/upload:
-          file: "codecov.yml"
+      - run:
+          name: Send to CodeCov
+          command: bash <(curl -s https://codecov.io/bash)
