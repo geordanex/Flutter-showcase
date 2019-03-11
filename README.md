@@ -1,16 +1,14 @@
-# demo
+# Flutter Course [![CircleCI Build Status](https://circleci.com/gh/geordanex/Flutter-Course/tree/master.svg?style=shield)](https://circleci.com/gh/geordanex/Flutter-Course/tree/master)
 
-A new Flutter project.
+## Spanish - Español
+En este proyecto estará la mayoria de los widgets de Flutter que están documentados.
 
-## Getting Started
+Está pensado como un repositorio donde se vea mi avance con la tecnologia Flutter.
 
-This project is a starting point for a Flutter application.
+## English
 
-A few resources to get you started if this is your first Flutter project:
+This project is a template)? with most of the widgets.
 
-- [Lab: Write your first Flutter app](https://flutter.io/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.io/docs/cookbook)
-
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.io/docs), which offers tutorials, 
+API docs
+[online documentation](https://flutter.io/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
