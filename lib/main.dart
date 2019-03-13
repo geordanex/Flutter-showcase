@@ -10,9 +10,6 @@ class MyApp extends StatefulWidget {
 class _State extends State<MyApp> {
   String _value = 'Hola!';
 
-  TextEditingController _user = new TextEditingController();
-  TextEditingController _pass = new TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -24,35 +21,39 @@ class _State extends State<MyApp> {
         child: new Center(
           child: new Column(
             children: <Widget>[
-              new Text('Please Login'),
-              new Row(
-                children: <Widget>[
-                  new Text('Username: '),
-                  new Expanded(
-                    child: new TextField(
-                      controller: _user,
-                    ),
-                  )
-                ],
-              ),
-              new Row(
-                children: <Widget>[
-                  new Text('Password: '),
-                  new Expanded(
-                    child: new TextField(
-                      controller: _pass,
-                      obscureText: true,
-                    ),
-                  )
-                ],
-              ),
-              new Padding(
-                padding: new EdgeInsets.all(12.0),
-                child: new RaisedButton(
-                  onPressed: () => print("Login ${_user.text}"),
-                  child: new Text('Click Me'),
+              new Card(
+                child: new Container(
+                  padding: new EdgeInsets.all(32.0),
+                  child: new Column(
+                    children: <Widget>[
+                      new Text('Hola Mundo!'),
+                      new Text('Como estas'),
+                    ],
+                  ),
                 ),
-              )
+              ),
+              new Card(
+                child: new Container(
+                  padding: new EdgeInsets.all(32.0),
+                  child: new Column(
+                    children: <Widget>[
+                      new Text('Hola Mundo!'),
+                      new Text('Como estas'),
+                    ],
+                  ),
+                ),
+              ),
+              new Card(
+                child: new Container(
+                  padding: new EdgeInsets.all(32.0),
+                  child: new Column(
+                    children: <Widget>[
+                      new Text('Hola Mundo!'),
+                      new Text('Como estas'),
+                    ],
+                  ),
+                ),
+              ),
             ],
           ),
         ),
