@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'dart:async';
+import 'dart:convert' as JSON;
+import 'dart:io';
 
 void main() => runApp(MaterialApp(home: MyApp()));
 
@@ -8,53 +11,26 @@ class MyApp extends StatefulWidget {
   _State createState() => new _State();
 }
 
-enum Answers { YES, NO, MAYBE }
-
 class _State extends State<MyApp> {
   String _value = 'Hola!';
 
-  void _setValue(String value) => setState(() => _value = value);
+  Map _countries = new Map();
 
-  Future _askUser() async {
-    switch (await showDialog(
-        context: context,
-        child: new SimpleDialog(
-          title: new Text('Do you like Flutter'),
-          children: <Widget>[
-            new SimpleDialogOption(
-              child: new Text('Yes'),
-              onPressed: () {
-                Navigator.pop(context, Answers.YES);
-              },
-            ),
-            new SimpleDialogOption(
-              child: new Text('No'),
-              onPressed: () {
-                Navigator.pop(context, Answers.NO);
-              },
-            ),
-            new SimpleDialogOption(
-              child: new Text('Maybe'),
-              onPressed: () {
-                Navigator.pop(context, Answers.MAYBE);
-              },
-            ),
-          ],
-        ))) {
-      case Answers.YES:
-        _setValue('Yes');
-        break;
-      case Answers.NO:
-        _setValue('No');
-        break;
-      case Answers.MAYBE:
-        _setValue('Maybe');
-        break;
+  void _getData() async {
+    var url = 'http://country.io/names.json';
+    var response = await http.get(url);
+
+    if (response.statusCode == 200) {
+      setState(() => _countries = JSON.jsonDecode(response.body));
+      print("Loaded ${_countries.length} countries");
     }
   }
 
   @override
   Widget build(BuildContext context) {
+
+    //_getData();
+
     return new Scaffold(
       appBar: new AppBar(
         title: new Text('My App'),
@@ -64,15 +40,30 @@ class _State extends State<MyApp> {
         child: new Center(
           child: new Column(
             children: <Widget>[
-              new Text(_value),
-              new RaisedButton(
-                onPressed: _askUser,
-                child: new Text('Click Me'),
-              )
+              new Text('Countries',
+                  style: new TextStyle(fontWeight: FontWeight.bold)),
+              new Expanded(
+                  child: new ListView.builder(
+                itemCount: _countries.length,
+                itemBuilder: (BuildContext context, int index) {
+                  String key = _countries.keys.elementAt(index);
+                  return new Row(
+                    children: <Widget>[
+                      new Text('${key} : '),
+                      new Text(_countries[key])
+                    ],
+                  );
+                },
+              ))
             ],
           ),
         ),
       ),
     );
+  }
+
+  @override
+  void initState() {
+    _getData();
   }
 }
