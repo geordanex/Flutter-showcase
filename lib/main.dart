@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:async';
 
 void main() => runApp(MaterialApp(home: MyApp()));
 
@@ -7,19 +8,49 @@ class MyApp extends StatefulWidget {
   _State createState() => new _State();
 }
 
-class _State extends State<MyApp> {
-  List<BottomNavigationBarItem> _items = [];
-  String _value = '';
-  int _index = 0;
+enum Answers { YES, NO, MAYBE }
 
-  @override
-  void initState() {
-    _items.add(new BottomNavigationBarItem(
-        icon: new Icon(Icons.people), title: new Text("People")));
-    _items.add(new BottomNavigationBarItem(
-        icon: new Icon(Icons.weekend), title: new Text("Weekend")));
-    _items.add(new BottomNavigationBarItem(
-        icon: new Icon(Icons.message), title: new Text("Message")));
+class _State extends State<MyApp> {
+  String _value = 'Hola!';
+
+  void _setValue(String value) => setState(() => _value = value);
+
+  Future _askUser() async {
+    switch (await showDialog(
+        context: context,
+        child: new SimpleDialog(
+          title: new Text('Do you like Flutter'),
+          children: <Widget>[
+            new SimpleDialogOption(
+              child: new Text('Yes'),
+              onPressed: () {
+                Navigator.pop(context, Answers.YES);
+              },
+            ),
+            new SimpleDialogOption(
+              child: new Text('No'),
+              onPressed: () {
+                Navigator.pop(context, Answers.NO);
+              },
+            ),
+            new SimpleDialogOption(
+              child: new Text('Maybe'),
+              onPressed: () {
+                Navigator.pop(context, Answers.MAYBE);
+              },
+            ),
+          ],
+        ))) {
+      case Answers.YES:
+        _setValue('Yes');
+        break;
+      case Answers.NO:
+        _setValue('No');
+        break;
+      case Answers.MAYBE:
+        _setValue('Maybe');
+        break;
+    }
   }
 
   @override
@@ -32,20 +63,15 @@ class _State extends State<MyApp> {
         padding: new EdgeInsets.all(32.0),
         child: new Center(
           child: new Column(
-            children: <Widget>[new Text(_value)],
+            children: <Widget>[
+              new Text(_value),
+              new RaisedButton(
+                onPressed: _askUser,
+                child: new Text('Click Me'),
+              )
+            ],
           ),
         ),
-      ),
-      bottomNavigationBar: new BottomNavigationBar(
-        items: _items,
-        fixedColor: Colors.blue,
-        currentIndex: _index,
-        onTap: (int item) {
-          setState(() {
-            _index = item;
-            _value = "Current Value is: ${_index.toString()}";
-          });
-        },
       ),
     );
   }
