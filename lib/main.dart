@@ -8,38 +8,28 @@ class MyApp extends StatefulWidget {
 }
 
 class _State extends State<MyApp> {
-  int _value = 0;
 
-  void _add() => setState(() => _value++);
-  void _remove() => setState(() => _value--);
+  String _value = '';
+  void _onClick() => setState(() => _value = new DateTime.now().toString());
 
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
         title: new Text('My App'),
-        backgroundColor: Colors.redAccent,
-        actions: <Widget>[
-          new IconButton(
-            icon: new Icon(Icons.add),
-            onPressed: _add,
-          ),
-          new IconButton(
-            icon: new Icon(Icons.remove),
-            onPressed: _remove,
-          ),
-        ],
+      ),
+      floatingActionButton: new FloatingActionButton(
+        onPressed: _onClick,
+        backgroundColor: Colors.red,
+        mini: false,
+        child: new Icon(Icons.timer),
       ),
       body: new Container(
         padding: new EdgeInsets.all(32.0),
         child: new Center(
           child: new Column(
             children: <Widget>[
-              new Text(
-                _value.toString(),
-                style:
-                    new TextStyle(fontWeight: FontWeight.bold, fontSize: 37.0),
-              )
+              new Text(_value)
             ],
           ),
         ),
