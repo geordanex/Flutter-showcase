@@ -8,41 +8,44 @@ class MyApp extends StatefulWidget {
 }
 
 class _State extends State<MyApp> {
-  int _value = 0;
+  List<BottomNavigationBarItem> _items = [];
+  String _value = '';
+  int _index = 0;
 
-  void _add() => setState(() => _value++);
-  void _remove() => setState(() => _value--);
+  @override
+  void initState() {
+    _items.add(new BottomNavigationBarItem(
+        icon: new Icon(Icons.people), title: new Text("People")));
+    _items.add(new BottomNavigationBarItem(
+        icon: new Icon(Icons.weekend), title: new Text("Weekend")));
+    _items.add(new BottomNavigationBarItem(
+        icon: new Icon(Icons.message), title: new Text("Message")));
+  }
 
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
         title: new Text('My App'),
-        backgroundColor: Colors.redAccent,
-        actions: <Widget>[
-          new IconButton(
-            icon: new Icon(Icons.add),
-            onPressed: _add,
-          ),
-          new IconButton(
-            icon: new Icon(Icons.remove),
-            onPressed: _remove,
-          ),
-        ],
       ),
       body: new Container(
         padding: new EdgeInsets.all(32.0),
         child: new Center(
           child: new Column(
-            children: <Widget>[
-              new Text(
-                _value.toString(),
-                style:
-                    new TextStyle(fontWeight: FontWeight.bold, fontSize: 37.0),
-              )
-            ],
+            children: <Widget>[new Text(_value)],
           ),
         ),
+      ),
+      bottomNavigationBar: new BottomNavigationBar(
+        items: _items,
+        fixedColor: Colors.blue,
+        currentIndex: _index,
+        onTap: (int item) {
+          setState(() {
+            _index = item;
+            _value = "Current Value is: ${_index.toString()}";
+          });
+        },
       ),
     );
   }
