@@ -21,39 +21,9 @@ class _State extends State<MyApp> {
         child: new Center(
           child: new Column(
             children: <Widget>[
-              new Card(
-                child: new Container(
-                  padding: new EdgeInsets.all(32.0),
-                  child: new Column(
-                    children: <Widget>[
-                      new Text('Hola Mundo!'),
-                      new Text('Como estas'),
-                    ],
-                  ),
-                ),
-              ),
-              new Card(
-                child: new Container(
-                  padding: new EdgeInsets.all(32.0),
-                  child: new Column(
-                    children: <Widget>[
-                      new Text('Hola Mundo!'),
-                      new Text('Como estas'),
-                    ],
-                  ),
-                ),
-              ),
-              new Card(
-                child: new Container(
-                  padding: new EdgeInsets.all(32.0),
-                  child: new Column(
-                    children: <Widget>[
-                      new Text('Hola Mundo!'),
-                      new Text('Como estas'),
-                    ],
-                  ),
-                ),
-              ),
+              new Text('Image Demo'),
+              new Expanded(child: new Image.asset('images/images.jpg')),
+              new Expanded(child: new Image.network('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrSmO4CyW8mKLJ2238N0JtF9W_AaaD3-vZERFSSpGa4WkomK9d'))
             ],
           ),
         ),
