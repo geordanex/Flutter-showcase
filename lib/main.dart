@@ -8,18 +8,29 @@ class MyApp extends StatefulWidget {
 }
 
 class _State extends State<MyApp> {
-  List<BottomNavigationBarItem> _items = [];
-  String _value = '';
-  int _index = 0;
-
-  @override
-  void initState() {
-    _items.add(new BottomNavigationBarItem(
-        icon: new Icon(Icons.people), title: new Text("People")));
-    _items.add(new BottomNavigationBarItem(
-        icon: new Icon(Icons.weekend), title: new Text("Weekend")));
-    _items.add(new BottomNavigationBarItem(
-        icon: new Icon(Icons.message), title: new Text("Message")));
+  String _value = 'Hola!';
+  void _showBottom() {
+    showModalBottomSheet<void>(
+        context: context,
+        builder: (BuildContext context) {
+          return new Container(
+            padding: new EdgeInsets.all(15.0),
+            child: new Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                new Text(
+                  'Some info Here',
+                  style: new TextStyle(
+                      color: Colors.blue, fontWeight: FontWeight.bold),
+                ),
+                new RaisedButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: new Text('Close'),
+                )
+              ],
+            ),
+          );
+        });
   }
 
   @override
@@ -32,20 +43,14 @@ class _State extends State<MyApp> {
         padding: new EdgeInsets.all(32.0),
         child: new Center(
           child: new Column(
-            children: <Widget>[new Text(_value)],
+            children: <Widget>[
+              new Text(_value),
+              new RaisedButton(
+                onPressed: _showBottom,
+              )
+              ],
           ),
         ),
-      ),
-      bottomNavigationBar: new BottomNavigationBar(
-        items: _items,
-        fixedColor: Colors.blue,
-        currentIndex: _index,
-        onTap: (int item) {
-          setState(() {
-            _index = item;
-            _value = "Current Value is: ${_index.toString()}";
-          });
-        },
       ),
     );
   }
