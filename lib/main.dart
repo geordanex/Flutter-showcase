@@ -9,33 +9,19 @@ class MyApp extends StatefulWidget {
 
 class _State extends State<MyApp> {
   String _value = 'Hola!';
-  void _showBottom() {
-    showModalBottomSheet<void>(
-        context: context,
-        builder: (BuildContext context) {
-          return new Container(
-            padding: new EdgeInsets.all(15.0),
-            child: new Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                new Text(
-                  'Some info Here',
-                  style: new TextStyle(
-                      color: Colors.blue, fontWeight: FontWeight.bold),
-                ),
-                new RaisedButton(
-                  onPressed: () => Navigator.pop(context),
-                  child: new Text('Close'),
-                )
-              ],
-            ),
-          );
-        });
+
+  final GlobalKey<ScaffoldState> _scafoldstate = new GlobalKey<ScaffoldState>();
+
+  void _showBar() {
+    _scafoldstate.currentState.showSnackBar(new SnackBar(
+      content: new Text('Hello world'),
+    ));
   }
 
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
+      key: _scafoldstate,
       appBar: new AppBar(
         title: new Text('My App'),
       ),
@@ -46,9 +32,10 @@ class _State extends State<MyApp> {
             children: <Widget>[
               new Text(_value),
               new RaisedButton(
-                onPressed: _showBottom,
+                onPressed: _showBar,
+                child: new Text('Click me'),
               )
-              ],
+            ],
           ),
         ),
       ),
