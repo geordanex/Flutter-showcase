@@ -1,4 +1,4 @@
-# Flutter Course [![CircleCI Build Status](https://circleci.com/gh/geordanex/Flutter-Course/tree/master.svg?style=shield)](https://circleci.com/gh/geordanex/Flutter-Course/tree/master)[![codecov](https://codecov.io/gh/geordanex/Flutter-Course/branch/master/graph/badge.svg)](https://codecov.io/gh/geordanex/Flutter-Course)
+# Flutter Showcase [![CircleCI Build Status](https://circleci.com/gh/geordanex/Flutter-Course/tree/master.svg?style=shield)](https://circleci.com/gh/geordanex/Flutter-Course/tree/master)[![codecov](https://codecov.io/gh/geordanex/Flutter-Course/branch/master/graph/badge.svg)](https://codecov.io/gh/geordanex/Flutter-Course)
 
 ## Spanish - Español
 En este proyecto estará la mayoria de los widgets de Flutter que están documentados.
